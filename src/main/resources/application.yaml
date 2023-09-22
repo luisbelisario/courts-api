@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: courts-api
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/courts-api
+
+server:
+  port: 8083
