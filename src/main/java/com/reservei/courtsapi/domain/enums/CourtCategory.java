@@ -1,14 +1,21 @@
 package com.reservei.courtsapi.domain.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@NoArgsConstructor
 public enum CourtCategory {
 
     BASKET("Basquete"),
-    TENNIS("Tênis"),
-    INDOOR_SOCCER("Futsal"),
+    TENNIS("TENNIS"),
+    INDOOR_SOCCER("INDOOR_SOCCER"),
 
-    BEACH_VOLLEY("Vôlei de praia"),
+    BEACH_VOLLEY("BEACH_VOLLEY"),
 
-    BEACH_TENNIS("Beach tênis");
+    BEACH_TENNIS("BEACH_TENNIS");
 
     private String category;
 
