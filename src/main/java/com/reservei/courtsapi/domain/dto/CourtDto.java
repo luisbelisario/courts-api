@@ -38,6 +38,7 @@ public class CourtDto {
     public static CourtDto toDto(Court court) {
         CourtDto courtDto = new CourtDto();
 
+        courtDto.setId(court.getId());
         courtDto.setCourtName(court.getCourtName());
         courtDto.setCourtCategories(court.getCourtCategories());
         courtDto.setCourtAdmin(court.getCourtAdmin());

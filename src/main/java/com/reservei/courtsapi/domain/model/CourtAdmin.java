@@ -11,8 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CourtAdmin {
 
-    private Long id;
-
     private String publicId;
 
     private String name;

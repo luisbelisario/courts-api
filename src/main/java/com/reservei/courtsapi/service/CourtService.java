@@ -7,5 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CourtService {
 
-    public CourtDto createCourt(CourtData courtData);
+    CourtDto create(CourtData courtData);
+    CourtDto findById(String id);
+
 }

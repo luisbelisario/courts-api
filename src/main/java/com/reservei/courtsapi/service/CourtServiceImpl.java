@@ -23,7 +23,7 @@ public class CourtServiceImpl implements CourtService {
     List<Validator> validators;
 
     @Override
-    public CourtDto createCourt(CourtData courtData) {
+    public CourtDto create(CourtData courtData) {
         Court court = courtFactory.of(courtData);
 
         validate(court);
@@ -33,9 +33,21 @@ public class CourtServiceImpl implements CourtService {
         return CourtDto.toDto(courtSaved);
     }
 
+    @Override
+    public CourtDto findById(String id) {
+        Court court = courtRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Quadra não encontrada"));
+
+        return CourtDto.toDto(court);
+    }
+
     private void validate(Court court) {
         for (Validator validator : validators) {
             validator.validate(court);
         }
+    }
+
+    public void setValidators(List<Validator> validators) {
+        this.validators = validators;
     }
 }
