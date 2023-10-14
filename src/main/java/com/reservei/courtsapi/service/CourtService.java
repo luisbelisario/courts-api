@@ -9,5 +9,6 @@ public interface CourtService {
 
     CourtDto create(CourtData courtData);
     CourtDto findById(String id);
+    CourtDto updateById(String id, CourtData data);
 
 }

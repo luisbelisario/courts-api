@@ -41,6 +41,15 @@ public class CourtServiceImpl implements CourtService {
         return CourtDto.toDto(court);
     }
 
+    @Override
+    public CourtDto updateById(String id, CourtData data) {
+        Court court = courtRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Quadra não encontrada"));
+        court = courtFactory.update(court, data);
+        Court courtUpdated = courtRepository.save(court);
+        return CourtDto.toDto(courtUpdated);
+    }
+
     private void validate(Court court) {
         for (Validator validator : validators) {
             validator.validate(court);

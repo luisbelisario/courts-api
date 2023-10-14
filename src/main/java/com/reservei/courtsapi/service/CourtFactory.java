@@ -23,4 +23,17 @@ public class CourtFactory {
 
         return court;
     }
+
+    public Court update(Court court, CourtData courtData) {
+
+        court.setCourtName(courtData.courtName() != null ? courtData.courtName() : court.getCourtName());
+        court.setCourtCategories(courtData.courtCategories() != null ? courtData.courtCategories() : court.getCourtCategories());
+        court.setCourtAdmin(courtData.courtAdmin() != null ? courtData.courtAdmin() : court.getCourtAdmin());
+        court.setCourtAddress(courtData.courtAddress() != null ? courtData.courtAddress() : court.getCourtAddress());
+        court.setCourtImages(courtData.courtImages() != null ? courtData.courtImages() : court.getCourtImages());
+        court.setCourtEvaluation(court.getCourtEvaluation());
+        court.setUpdatedAt(LocalDate.now());
+
+        return court;
+    }
 }

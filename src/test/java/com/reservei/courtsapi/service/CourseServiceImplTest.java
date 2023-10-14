@@ -122,9 +122,9 @@ public class CourseServiceImplTest {
 
     @Test
     @DisplayName("When pass existing id in the database should return the correct court")
-    public void test_When_Should() {
+    public void testFindCourtById_WhenPassingExistingID_ShouldReturnCorrectCourt() {
         // given
-        Mockito.when(courtRepository.findById(Mockito.any())).thenReturn(Optional.ofNullable(court));
+        Mockito.when(courtRepository.findById("6529a28f914b882d8bf4ad44")).thenReturn(Optional.ofNullable(court));
 
         // when
         CourtDto courtDto = courtService.findById("6529a28f914b882d8bf4ad44");
@@ -132,5 +132,38 @@ public class CourseServiceImplTest {
         // then
         assertNotNull(courtDto);
         assertEquals("Quadra teste", courtDto.getCourtName());
+    }
+
+    @Test
+    @DisplayName("When update court should return updated court")
+    public void test_When_Should() {
+        // given
+        courtData = new CourtData(
+                "Quadra teste atualizada",
+                null,
+                courtAdmin,
+                courtAddress,
+                null
+        );
+        Court courtUpdated = new Court("6529a28f914b882d8bf4ad44",
+                "Quadra teste atualizada",
+                categories,
+                courtAdmin,
+                courtAddress,
+                null,
+                0.0,
+                LocalDate.now(),
+                null);
+        Mockito.when(courtRepository.findById("6529a28f914b882d8bf4ad44")).thenReturn(Optional.ofNullable(court));
+        Mockito.when(courtRepository.save(Mockito.any())).thenReturn(courtUpdated);
+        Mockito.when(courtFactory.update(Mockito.any(Court.class), Mockito.any(CourtData.class))).thenReturn(courtUpdated);
+
+        // when
+        CourtDto courtDto = courtService.updateById("6529a28f914b882d8bf4ad44", courtData);
+
+        // then
+        assertNotNull(courtDto);
+        assertEquals("Quadra teste atualizada", courtDto.getCourtName());
+        assertEquals("6529a28f914b882d8bf4ad44", courtDto.getId());
     }
 }

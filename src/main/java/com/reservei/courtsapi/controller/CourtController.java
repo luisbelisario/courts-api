@@ -33,4 +33,12 @@ public class CourtController {
         return ResponseEntity.ok().body(dto);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CourtDto> updateById(@PathVariable String id,
+                                               @RequestBody CourtData data) {
+        CourtDto dto = courtService.updateById(id, data);
+
+        return ResponseEntity.ok().body(dto);
+    }
+
 }
